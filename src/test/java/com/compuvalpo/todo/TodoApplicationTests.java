@@ -1,4 +1,4 @@
-package com.compuvalpo.todo.todo;
+package com.compuvalpo.todo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
