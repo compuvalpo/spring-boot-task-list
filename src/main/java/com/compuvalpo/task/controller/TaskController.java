@@ -5,6 +5,7 @@ import com.compuvalpo.task.service.TaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,12 +30,12 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TaskModel create(@RequestBody TaskModel task){
+    public TaskModel create(@Validated @RequestBody TaskModel task){
         return taskService.create(task);
     }
 
     @PutMapping("{id}")
-    public TaskModel update(@PathVariable Integer id, @RequestBody TaskModel task){
+    public TaskModel update(@PathVariable Integer id,@Validated @RequestBody TaskModel task){
         return taskService.update(id,task);
     }
 
