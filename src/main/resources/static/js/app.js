@@ -48,34 +48,41 @@ function SwalMensaje(gl_url, title, text, icon) {
 
 function crearTask(){
 
-    if($("#fecha_task").val()){
-        fecha = new Date($("#fecha_task").val())
-    }else{
-        fecha = new Date()
-    }
-    fecha_task = fecha.toLocaleDateString() +' '+fecha.getHours()+':'+fecha.getMinutes()
+    if($("#taskId").val() > 0){
 
-    $.ajax({
-        url: '/task',
-        type: 'post',
-        dataType: 'json',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        data: JSON.stringify({
-                          "nombre": $("#taskNombre").val(),
-                          "descripcion": $("#taskDescripcion").val(),
-                          "estado": $("#taskEstado").val(),
-                          "fecha_task": fecha_task
-                        }),
-        success: function(data) {
-            SwalMensaje('', 'Tarea Guardada', 'La tarea ha sido guardada', 'success');
-        },
-        error: function(jqXHR, status, error) {
-            console.log(error)
-            SwalMensaje('', 'Tarea NO Guardada', 'La tarea no ha sido guardada', 'error');
+        editarTask($("#taskId").val())
+
+    }else{
+
+        if($("#fecha_task").val()){
+            fecha = new Date($("#fecha_task").val())
+        }else{
+            fecha = new Date()
         }
-    });
+        fecha_task = fecha.toLocaleDateString() +' '+fecha.getHours()+':'+fecha.getMinutes()
+
+        $.ajax({
+            url: '/task',
+            type: 'post',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+                              "nombre": $("#taskNombre").val(),
+                              "descripcion": $("#taskDescripcion").val(),
+                              "estado": $("#taskEstado").val(),
+                              "fecha_task": fecha_task
+                            }),
+            success: function(data) {
+                SwalMensaje('', 'Tarea Guardada', 'La tarea ha sido guardada', 'success');
+            },
+            error: function(jqXHR, status, error) {
+                SwalMensaje('', 'Tarea NO Guardada', 'La tarea no ha sido guardada', 'error');
+            }
+        });
+
+    }
 }
 
 function editarTask(id){
@@ -88,7 +95,7 @@ function editarTask(id){
     fecha_task = fecha.toLocaleDateString() +' '+fecha.getHours()+':'+fecha.getMinutes()
 
     $.ajax({
-        url: '/task/+id',
+        url: '/task/'+id,
         type: 'post',
         method: 'PUT',
         dataType: 'json',
@@ -105,8 +112,34 @@ function editarTask(id){
             SwalMensaje('', 'Tarea Actualizada', 'La tarea ha sido actualizada', 'success');
         },
         error: function(jqXHR, status, error) {
-            console.log(error)
             SwalMensaje('', 'Tarea NO Actualizada', 'La tarea no ha sido actualizada', 'error');
+        }
+    });
+}
+
+function getTask(id){
+
+    $.ajax({
+        url: '/task/'+id,
+        type: 'post',
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        success: function(data) {
+
+            setTimeout(function () {
+                let fecha = new Date(data.fecha_task).toISOString().replace('Z', '')
+                console.log(fecha);
+                $("#taskId").val(data.id)
+                $("#taskNombre").val(data.nombre)
+                $("#fecha_task").val(fecha)
+                $("#taskDescripcion").val(data.descripcion)
+            }, 1000);
+
+        },
+        error: function(jqXHR, status, error) {
+            SwalMensaje('', 'Tarea NO Encontrada', 'La tarea no ha sido encontrada', 'error');
         }
     });
 }
@@ -124,7 +157,6 @@ function eliminarTask(id){
             SwalMensaje('', 'Tarea Eliminada', 'La tarea ha sido eliminada', 'success');
         },
         error: function(jqXHR, status, error) {
-            console.log(error)
             SwalMensaje('', 'Tarea NO Eliminada', 'La tarea no ha sido eliminada', 'error');
         }
     });
@@ -143,7 +175,6 @@ function finalizarTask(id){
             SwalMensaje('', 'Tarea Finalizada', 'La tarea ha sido finalizada', 'success');
         },
         error: function(jqXHR, status, error) {
-            console.log(error)
             SwalMensaje('', 'Tarea NO Finalizada', 'La tarea no ha sido finalizada', 'error');
         }
     });
