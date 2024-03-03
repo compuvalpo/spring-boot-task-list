@@ -6,8 +6,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import java.time.format.DateTimeFormatter;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table (name="task")
@@ -22,16 +24,18 @@ public class TaskModel {
     private String nombre;
     private String descripcion;
     private String estado;
-    private LocalDateTime fecha_task;
+    private String fecha_task;
     private LocalDateTime fecha_creacion;
 
     public TaskModel() {    }
 
-    public TaskModel(String nombre, String descripcion, String estado, LocalDateTime fecha_task) {
+    public TaskModel(String nombre, String descripcion, String estado, String fecha_task) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
         this.fecha_task = fecha_task;
-        this.fecha_creacion = LocalDateTime.now();
+        this.fecha_creacion = LocalDateTime.now(ZoneId.of("America/Argentina/Buenos_Aires"));
     }
 }

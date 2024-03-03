@@ -30,7 +30,8 @@ function SwalDelete(id, nombre, gl_url) {
   });
 }
 
-function SwalMensaje(id, nombre, gl_url, title, text, icon) {
+//'', 'Tarea Guardada', 'La tarea ha sido guardada', 'success'
+function SwalMensaje(gl_url, title, text, icon) {
     swal.fire({
           title: title,
           text: text,
@@ -38,9 +39,43 @@ function SwalMensaje(id, nombre, gl_url, title, text, icon) {
           confirmButtonText: 'OK',
           timer: 2500,
           timerProgressBar: true
-        }).then((result) => {
+    }).then((result) => {
 
          //window.location =  gl_url
+        window.location.reload();
+    });
+}
 
-        });
+
+function crearTask(){
+
+    if($("#fecha_task").val()){
+        fecha = new Date($("#fecha_task").val())
+    }else{
+        fecha = new Date()
+    }
+    fecha_task = fecha.toLocaleDateString() +' '+fecha.getHours()+':'+fecha.getMinutes()
+
+    $.ajax({
+        url: '/task',
+        type: 'post',
+        dataType: 'json',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        data: JSON.stringify({
+                          "nombre": $("#taskNombre").val(),
+                          "descripcion": $("#taskDescripcion").val(),
+                          "estado": $("#taskEstado").val(),
+                          "fecha_task": fecha_task
+                        }),
+        success: function(data) {
+            SwalMensaje('', 'Tarea Guardada', 'La tarea ha sido guardada', 'success');
+        },
+        error: function(jqXHR, status, error) {
+            console.log(error)
+            SwalMensaje('', 'Tarea NO Guardada', 'La tarea no ha sido guardada', 'error');
+        }
+    });
+
 }

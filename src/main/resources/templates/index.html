@@ -83,23 +83,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formTaskModal">
+                <form id="formTaskModal" class="formTaskModal">
+
+                    <input type="hidden" id="taskId" name="taskId">
+                    <input type="hidden" id="taskEstado" name="estado" value="Pendiente">
                     <div class="mb-3">
                         <label for="taskNombre" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="taskNombre">
+                        <input type="text" class="form-control" id="taskNombre" name="nombre" required >
                     </div>
                     <div class="mb-3">
                         <label for="fecha_task" class="col-form-label">Fecha:</label>
-                        <input type="datetime-local" min="" class="form-control" id="fecha_task">
+                        <input type="datetime-local" min="" class="form-control" id="fecha_task" name="fecha_task">
                     </div>
                     <div class="mb-3">
                         <label for="taskDescripcion" class="col-form-label">Descripcion:</label>
-                        <textarea class="form-control" id="taskDescripcion"></textarea>
+                        <textarea class="form-control" id="taskDescripcion" name="descripcion"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Aceptar</button>
+                <button type="button" onclick="crearTask()" class="btn btn-success">Aceptar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>

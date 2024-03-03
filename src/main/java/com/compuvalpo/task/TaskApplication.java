@@ -22,9 +22,9 @@ public class TaskApplication {
 	CommandLineRunner runner(TaskRepository taskRepository){
 		return args -> {
 			List<TaskModel> tasks = Arrays.asList(
-				new TaskModel("Revisar BUG", "Encontrar ese esquivo BUG en el sistema UNO", "En Progreso", LocalDateTime.now()),
-				new TaskModel("Repara Bug", "Reparar ese BUG en el sistema", "Pendiente", LocalDateTime.now()),
-				new TaskModel("Actualizar Producción", "Actualizar Producción", "Finalizada", LocalDateTime.now())
+				new TaskModel("Revisar BUG", "Encontrar ese esquivo BUG en el sistema UNO", "En Progreso", "04/03/2024 08:10"),
+				new TaskModel("Repara Bug", "Reparar ese BUG en el sistema", "Pendiente", "04/03/2024 16:10"),
+				new TaskModel("Actualizar Producción", "Actualizar Producción", "Finalizada", "05/03/2024 12:00")
 			);
 
 			taskRepository.saveAll(tasks);
