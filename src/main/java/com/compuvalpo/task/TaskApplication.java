@@ -22,9 +22,7 @@ public class TaskApplication {
 	CommandLineRunner runner(TaskRepository taskRepository){
 		return args -> {
 			List<TaskModel> tasks = Arrays.asList(
-				new TaskModel("Responder Email", "Responder los Email pendientes", "Pendiente", LocalDateTime.now()),
-				new TaskModel("Revisar sistema de Tareas", "Revisar sistema de Tareas", "Pendiente", LocalDateTime.now()),
-				new TaskModel("Revisar BUG", "Encontrar ese BUG en el sistema", "En Progreso", LocalDateTime.now()),
+				new TaskModel("Revisar BUG", "Encontrar ese esquivo BUG en el sistema UNO", "En Progreso", LocalDateTime.now()),
 				new TaskModel("Repara Bug", "Reparar ese BUG en el sistema", "Pendiente", LocalDateTime.now()),
 				new TaskModel("Actualizar Producción", "Actualizar Producción", "Finalizada", LocalDateTime.now())
 			);

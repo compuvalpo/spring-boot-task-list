@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="compuvalpo@gmail.com">
+    <meta name = "description" content = "Sistema para la gestión de Tareas." />
+    <title>Task List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script th:src="@{/js/jquery-3.7.1.min.js}">></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/sweetalert2.js}"></script>
+    <script th:src="@{/js/fontawesome.min.js}"></script>
+    <script th:src="@{/js/all.min.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap-grid.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/fontawesome.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/all.min.css}" />
+</head>
+<body>
+<div class="container mb-4">
+
+    <main id="content">
+        <h1 class="title mb-4">Sistema de Gestión de Tareas</h1>
+
+        <div class="container-fluid">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="text-end">
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#taskModal" data-titulo="Crear Nueva Tarea"><i class="fa-solid fa-circle-plus"></i> Nueva Tarea</button>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title text-primary mb-3">Lista de Tareas</h5>
+
+
+                        <div th:switch="${taskList}">
+                            <div th:case="*">
+
+                                <ul  id="tasks-list" class="list-group">
+                                    <th:block th:each="taskService : ${taskList}">
+
+                                        <li id="li_1" class="list-group-item list-group-item-primary d-flex justify-content-between">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold card-title" th:text="${taskService.nombre}"> </div>
+                                                <span class="card-text" th:text="${taskService.descripcion}"> </span>
+                                                <br>
+                                                <small class="text-secondary" th:text="${taskService.fecha_task}"> </small>
+                                                <span class="badge rounded-pill" th:attrappend="class=${taskService.estado}=='Finalizada' ? ' btn-success' : (${taskService.estado}=='Pendiente' ? ' btn-danger' : ' btn-warning')" th:text="${taskService.estado}"></span>
+                                            </div>
+
+                                            <div class="text-end w-25">
+                                                <button id="btnEditar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#taskModal" data-titulo="Editar Tarea" title="Editar"><i class="fa fa-pencil"></i></button>
+                                                <button id="btnFinalizar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-success" title="Finalizar"><i class="fa fa-check"></i></button>
+                                                <button id="btnEliminar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </li>
+                                    </th:block>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+
+<!-- Task Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalTitle">Tarea</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formTaskModal">
+                    <div class="mb-3">
+                        <label for="taskNombre" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="taskNombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_task" class="col-form-label">Fecha:</label>
+                        <input type="datetime-local" min="" class="form-control" id="fecha_task">
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskDescripcion" class="col-form-label">Descripcion:</label>
+                        <textarea class="form-control" id="taskDescripcion"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
