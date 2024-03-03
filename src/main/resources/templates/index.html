@@ -53,9 +53,9 @@
                                             </div>
 
                                             <div class="text-end w-25">
-                                                <button id="btnEditar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#taskModal" data-titulo="Editar Tarea" title="Editar"><i class="fa fa-pencil"></i></button>
-                                                <button id="btnFinalizar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-success" title="Finalizar"><i class="fa fa-check"></i></button>
-                                                <button id="btnEliminar_1" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
+                                                <button id="btnEditar" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#taskModal" data-titulo="Editar Tarea" title="Editar"><i class="fa fa-pencil"></i></button>
+                                                <button id="btnFinalizar" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-success" title="Finalizar"><i class="fa fa-check"></i></button>
+                                                <button id="btnEliminar" onclick="eliminarTask($(this).data('btnid'))" th:attr="data-btnId=${taskService.id}" class="border-0 btn btn-outline-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
                                             </div>
                                         </li>
                                     </th:block>

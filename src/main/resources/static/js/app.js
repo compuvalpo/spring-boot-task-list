@@ -77,5 +77,23 @@ function crearTask(){
             SwalMensaje('', 'Tarea NO Guardada', 'La tarea no ha sido guardada', 'error');
         }
     });
+}
 
+function eliminarTask(id){
+
+    $.ajax({
+        url: '/task/'+id,
+        type: 'post',
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        success: function(data) {
+            SwalMensaje('', 'Tarea Eliminada', 'La tarea ha sido eliminada', 'success');
+        },
+        error: function(jqXHR, status, error) {
+            console.log(error)
+            SwalMensaje('', 'Tarea NO Eliminada', 'La tarea no ha sido eliminada', 'error');
+        }
+    });
 }
