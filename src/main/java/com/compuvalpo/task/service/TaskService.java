@@ -37,6 +37,14 @@ public class TaskService {
 
         return taskRepository.save(taskBD);
     }
+
+    public TaskModel finalizar(Integer id){
+        TaskModel taskBD = findById(id);
+
+        taskBD.setEstado("Finalizada");
+
+        return taskRepository.save(taskBD);
+    }
     public void delete(Integer id){
         TaskModel taskBD = findById(id);
 

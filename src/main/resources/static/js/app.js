@@ -46,7 +46,6 @@ function SwalMensaje(gl_url, title, text, icon) {
     });
 }
 
-
 function crearTask(){
 
     if($("#fecha_task").val()){
@@ -79,6 +78,39 @@ function crearTask(){
     });
 }
 
+function editarTask(id){
+
+    if($("#fecha_task").val()){
+        fecha = new Date($("#fecha_task").val())
+    }else{
+        fecha = new Date()
+    }
+    fecha_task = fecha.toLocaleDateString() +' '+fecha.getHours()+':'+fecha.getMinutes()
+
+    $.ajax({
+        url: '/task/+id',
+        type: 'post',
+        method: 'PUT',
+        dataType: 'json',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        data: JSON.stringify({
+                          "nombre": $("#taskNombre").val(),
+                          "descripcion": $("#taskDescripcion").val(),
+                          "estado": $("#taskEstado").val(),
+                          "fecha_task": fecha_task
+                        }),
+        success: function(data) {
+            SwalMensaje('', 'Tarea Actualizada', 'La tarea ha sido actualizada', 'success');
+        },
+        error: function(jqXHR, status, error) {
+            console.log(error)
+            SwalMensaje('', 'Tarea NO Actualizada', 'La tarea no ha sido actualizada', 'error');
+        }
+    });
+}
+
 function eliminarTask(id){
 
     $.ajax({
@@ -94,6 +126,25 @@ function eliminarTask(id){
         error: function(jqXHR, status, error) {
             console.log(error)
             SwalMensaje('', 'Tarea NO Eliminada', 'La tarea no ha sido eliminada', 'error');
+        }
+    });
+}
+
+function finalizarTask(id){
+
+    $.ajax({
+        url: '/task/finalizar/'+id,
+        type: 'post',
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        success: function(data) {
+            SwalMensaje('', 'Tarea Finalizada', 'La tarea ha sido finalizada', 'success');
+        },
+        error: function(jqXHR, status, error) {
+            console.log(error)
+            SwalMensaje('', 'Tarea NO Finalizada', 'La tarea no ha sido finalizada', 'error');
         }
     });
 }

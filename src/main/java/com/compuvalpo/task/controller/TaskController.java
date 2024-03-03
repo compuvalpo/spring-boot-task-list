@@ -39,6 +39,11 @@ public class TaskController {
         return taskService.update(id,task);
     }
 
+    @PutMapping(value = "finalizar/{id}")
+    public TaskModel finalizar(@PathVariable Integer id){
+        return taskService.finalizar(id);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id){
