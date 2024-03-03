@@ -1,3 +1,16 @@
+$(document).ready(function () {
+
+	const taskModal = $('#taskModal')[0]
+	if (taskModal) {
+		taskModal.addEventListener('show.bs.modal', event => {
+		const button = event.relatedTarget
+		const recipient = button.getAttribute('data-titulo')
+
+		$('.modal-title').text(recipient)
+		})
+	}
+
+});
 
 
 function SwalDelete(id, nombre, gl_url) {
