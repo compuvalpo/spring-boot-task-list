@@ -94,6 +94,7 @@
                     <div class="mb-3">
                         <label for="taskNombre" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="taskNombre" name="nombre" required >
+                        <div class="invalid-feedback"> El nombre de la tarea es obligatorio. </div>
                     </div>
                     <div class="mb-3">
                         <label for="fecha_task" class="col-form-label">Fecha:</label>
@@ -107,7 +108,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="crearTask()" class="btn btn-success">Aceptar</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="limpiarModal()" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

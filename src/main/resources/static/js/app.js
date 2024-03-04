@@ -48,6 +48,14 @@ function SwalMensaje(gl_url, title, text, icon) {
 
 function crearTask(){
 
+    if($("#taskNombre").val().length == 0){
+
+        $("#taskNombre").addClass("invalid-data");
+        $("#taskNombre").addClass("is-invalid");
+
+        return;
+    }
+
     if($("#taskId").val() > 0){
 
         editarTask($("#taskId").val())
@@ -178,4 +186,13 @@ function finalizarTask(id){
             SwalMensaje('', 'Tarea NO Finalizada', 'La tarea no ha sido finalizada', 'error');
         }
     });
+}
+
+
+
+function limpiarModal(){
+    $("#taskId").val('')
+    $("#taskNombre").val('')
+    $("#fecha_task").val('')
+    $("#taskDescripcion").val('')
 }
