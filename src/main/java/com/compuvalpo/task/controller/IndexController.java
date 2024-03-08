@@ -24,7 +24,6 @@ public class IndexController {
     @GetMapping("")
     public String index(Model model){
 
-        model.addAttribute("standardDate", new Date());
         model.addAttribute("taskList", this.taskService.findAll());
 
         return "index";
