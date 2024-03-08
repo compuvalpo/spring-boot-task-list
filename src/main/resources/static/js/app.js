@@ -2,11 +2,12 @@ $(document).ready(function () {
 
 	const taskModal = $('#taskModal')[0]
 	if (taskModal) {
-		taskModal.addEventListener('show.bs.modal', event => {
-		const button = event.relatedTarget
-		const recipient = button.getAttribute('data-titulo')
 
-		$('.modal-title').text(recipient)
+		taskModal.addEventListener('show.bs.modal', event => {
+		    const button = event.relatedTarget
+		    const recipient = button.getAttribute('data-titulo')
+
+		    $('.modal-title').text(recipient)
 		})
 	}
 
@@ -188,11 +189,13 @@ function finalizarTask(id){
     });
 }
 
-
-
 function limpiarModal(){
-    $("#taskId").val('')
-    $("#taskNombre").val('')
-    $("#fecha_task").val('')
-    $("#taskDescripcion").val('')
+    console.log("limpiarModal");
+    setTimeout(function () {
+        $("#taskId").val('')
+        $("#taskNombre").val('')
+        $("#fecha_task").val('')
+        $("#taskDescripcion").val('')
+    }, 100);
+
 }
