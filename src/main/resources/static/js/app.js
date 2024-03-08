@@ -138,11 +138,20 @@ function getTask(id){
         success: function(data) {
 
             setTimeout(function () {
-                let fecha = new Date(data.fecha_task).toISOString().replace('Z', '')
-                console.log(fecha);
+
+                if(data.fecha_task){
+
+                    let f0 = data.fecha_task.split(" ");
+                    let f1 = f0[0].split("/");
+                    let f2 = f0[1].split(":");
+                    let fecha = new Date(f1[2],f1[1]-1,f1[0],f2[0],f2[1]).toISOString().replace('Z', '')
+
+                    $("#fecha_task").val(fecha)
+                }
+
                 $("#taskId").val(data.id)
                 $("#taskNombre").val(data.nombre)
-                $("#fecha_task").val(fecha)
+
                 $("#taskDescripcion").val(data.descripcion)
             }, 1000);
 
@@ -190,7 +199,7 @@ function finalizarTask(id){
 }
 
 function limpiarModal(){
-    console.log("limpiarModal");
+
     setTimeout(function () {
         $("#taskId").val('')
         $("#taskNombre").val('')
