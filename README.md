@@ -16,6 +16,7 @@ Dependencias
 - [ ] Lombok
 - [ ] JUnit
 - [ ] Mockito 5.10
+- [ ] Springdoc 2.3 [https://springdoc.org/#Introduction] [http://localhost:9001/doc/swagger-ui/index.html]
 
 ## Clonar Repositorio
 ```
