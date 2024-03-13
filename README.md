@@ -23,3 +23,12 @@ Dependencias
 mkdir spring-boot-task-list
 cd spring-boot-task-list
 git clone https://github.com/compuvalpo/spring-boot-task-list.git
+```
+
+## Capturas
+![](capturas/1_Listar_Tareas.png)
+![](capturas/2_Crear_Tarea_Inicio.png)
+![](capturas/3_Crear_Tarea_Guardar.png)
+![](capturas/4_Crear_Tarea_Actualizar_Lista.png)
+![](capturas/5_Editar_Tarea.png)
+![](capturas/6_Swagger.png)
