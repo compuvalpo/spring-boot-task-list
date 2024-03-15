@@ -8,7 +8,7 @@ Para el FrontEnt se utiliza el motor de plantillas Thymeleaf con jQuery 3.7
 
 - [ ] Java JDK 17 [https://www.oracle.com/cl/java/technologies/downloads/#java17]
 
-Dependencias
+## Dependencias
 - [ ] Spring Web
 - [ ] Spring Data JPA
 - [ ] H2 Database (in-memory)
@@ -20,8 +20,6 @@ Dependencias
 
 ## Clonar Repositorio
 ```
-mkdir spring-boot-task-list
-cd spring-boot-task-list
 git clone https://github.com/compuvalpo/spring-boot-task-list.git
 ```
 
