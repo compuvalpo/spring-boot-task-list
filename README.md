@@ -1,5 +1,5 @@
 # spring-boot-task-list
-Sistema para Gestión de Tareas utilizando Java Spring Boot + Thymeleaf +jQuery + H2 Database
+Sistema para Gestión de Tareas utilizando Java Spring Boot + Thymeleaf + jQuery + H2 Database
 
 ## Java Spring Boot
 spring-boot-task-list [http://localhost:9000/]
